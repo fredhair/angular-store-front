@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.32112.339
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AngularStore", "AngularStore\AngularStore.csproj", "{B9ED5388-B7AE-4D3C-949E-31E2346EEE0D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B9ED5388-B7AE-4D3C-949E-31E2346EEE0D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B9ED5388-B7AE-4D3C-949E-31E2346EEE0D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B9ED5388-B7AE-4D3C-949E-31E2346EEE0D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B9ED5388-B7AE-4D3C-949E-31E2346EEE0D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {80CD1ECF-637A-4B07-9AB3-0738E74A319E}
+	EndGlobalSection
+EndGlobal

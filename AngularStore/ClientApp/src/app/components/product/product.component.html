@@ -1,0 +1,16 @@
+<div class="card h-100" *ngIf="product">
+  <img src="https://via.placeholder.com/320x240" alt="" class="card-img-top" />
+  <div class="card-body">
+    <h5 class="card-title text-center">{{product.name}}</h5>
+    <h6 class="card-subtitle mb-2 text-muted text-center">£{{product.price}}</h6>
+    <p class="card-text mb-2">{{product.description}}</p>
+  </div>
+    <div class="card-footer text-center">
+      <fieldset class="input-group">
+        <button class="btn btn-danger" (click)="decrementCount()">-</button>
+        <input class="form-control" type="number" [(ngModel)]="productCount" min="1" />
+        <button class="btn btn-success" (click)="incrementCount()">+</button>
+        <button class="btn btn-primary" (click)="addToBasket()">Add to Basket</button>
+      </fieldset>
+    </div>
+</div>

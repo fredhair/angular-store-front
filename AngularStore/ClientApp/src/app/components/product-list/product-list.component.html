@@ -1,0 +1,8 @@
+<p *ngIf="!products">Loading product list...</p>
+<h2 *ngIf="products">Products:</h2>
+
+<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-xl-4 gx-2 gy-4" *ngIf="products">
+  <div class="col" *ngFor="let product of products">
+    <app-product [product]="product"></app-product>
+  </div>
+</div>
