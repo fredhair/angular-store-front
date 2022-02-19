@@ -3,7 +3,7 @@ using Microsoft.Extensions.DependencyInjection;
 using AngularStore.Data;
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddDbContext<AngularStoreContext>();
+builder.Services.AddDbContext<AngularStoreContext>(options => options.UseSqlite("Data Source=ProductsDB.db;"));
 
 // Add services to the container.
 

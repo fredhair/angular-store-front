@@ -4,8 +4,7 @@ import { CartService } from '../../services/cart.service';
 
 @Component({
   selector: 'app-cart',
-  templateUrl: './cart.component.html',
-  styleUrls: ['./cart.component.css']
+  templateUrl: './cart.component.html'
 })
 export class CartComponent {
 
@@ -21,6 +20,14 @@ export class CartComponent {
 
   changeItemCount(product: IProduct, count: string | number): void {
     this.cart.setCount(product, typeof(count) === "string" ? parseInt(count) : count);
+  }
+
+  placeOrder(): void {
+    //TODO: Make cart service call endpoint and simulate an order,
+    // -> route to order confirmation with order details from endpoint.
+    // (generate an order Id, list details etc)
+    alert('Thank you for ordering!');
+    this.cart.empty();
   }
 
 }

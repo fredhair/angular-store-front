@@ -17,7 +17,7 @@ export class ProductComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  //Could have made increment and decrement a single function
+  //Could have made increment and decrement a single function and had unsigned count param
   //but I like this explicit functionality and hiding direct value access.
   incrementCount() {
     this.productCount++;

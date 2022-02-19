@@ -17,11 +17,6 @@ namespace AngularStore.Data
 
         public DbSet<Product> Products { get; set; }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            optionsBuilder.UseSqlite("Data Source=ProductsDB.db;");
-        }
-
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Product>().ToTable("Product");
@@ -30,10 +25,6 @@ namespace AngularStore.Data
             modelBuilder.Entity<Product>()
                 .Property(e => e.Price)
                 .HasConversion<double>();
-            //This is already done in the model with an attribute on the Price member
-            //modelBuilder.Entity<Product>()
-            //    .Property(i => i.Price)
-            //    .HasColumnType("money");
         }
     }
 }

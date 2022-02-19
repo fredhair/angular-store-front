@@ -7,7 +7,6 @@ const PROXY_CONFIG = [
   {
     context: [
       "/api/products",
-      "/api/products/search/"
    ],
     target: target,
     secure: false
