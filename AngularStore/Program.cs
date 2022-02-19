@@ -3,8 +3,7 @@ using Microsoft.Extensions.DependencyInjection;
 using AngularStore.Data;
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddDbContext<AngularStoreContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("AngularStoreContext")));
+builder.Services.AddDbContext<AngularStoreContext>();
 
 // Add services to the container.
 

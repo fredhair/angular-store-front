@@ -1,1 +1,52 @@
-<p>cart works!</p>
+<div class="offcanvas offcanvas-start" tabindex="-1" id="cartDisplay" aria-labelledby="cartCaption">
+  <div class="offcanvas-header">
+    <h5 class="offcanvas-title" id="cartCaption">Your Basket</h5>
+    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  </div>
+  <div class="offcanvas-body small">
+    <div *ngIf="products$ | async as products">
+      <div *ngIf="products.length else basketIsEmpty">
+        <div class="table-responsive">
+          <table class="table table-sm table-striped align-middle">
+            <thead class="table-light">
+              <tr>
+                <th scope="col">Barcode</th>
+                <th scope="col">Product</th>
+                <th scope="col">Price (£)</th>
+                <th scope="col">Count</th>
+                <th scope="col">Total</th>
+                <th scope="col"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let cartEntry of products">
+                <th scope="row">{{ cartEntry.product.barcode }}</th>
+                <td>{{ cartEntry.product.name }}</td>
+                <td>{{ cartEntry.product.price.toFixed(2) }}</td>
+                <td>
+                  <input type="number" size="3" #itemCount value="{{ cartEntry.count }}" (input)="changeItemCount(cartEntry.product, itemCount.value)" />
+                </td>
+                <td>{{ (cartEntry.count * cartEntry.product.price).toFixed(2) }}</td>
+                <td class="text-center"><button class="btn btn-danger btn-sm" (click)="removeItem(cartEntry.product)" title="Remove {{ cartEntry.product.name }}">X</button></td>
+              </tr>
+            </tbody>
+            <tfoot>
+              <tr>
+                <td colspan="5">Total: </td>
+                <td>£{{ totalValue$  | async | number : '1.2' }}</td>
+              </tr>
+            </tfoot>
+          </table>
+        </div>
+        <div class="my-2">
+          <button class="btn btn-primary w-100">Place Order</button>
+        </div>
+      </div>
+      <ng-template #basketIsEmpty>
+        <div class="text-center text-muted">
+          Basket is empty!
+        </div>
+      </ng-template>
+    </div>
+  </div>
+</div>

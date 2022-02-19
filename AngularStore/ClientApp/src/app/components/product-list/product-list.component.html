@@ -1,7 +1,13 @@
-<p *ngIf="!products">Loading product list...</p>
+<app-search (textChanged)="onProductSearched($event)"></app-search>
+
+<div *ngIf="!products" class="text-center">
+  <strong class="me-2">Loading</strong>
+  <div class="spinner-border spinner-border-sm text-primary" role="status" aria-hidden="true"></div>
+</div>
+
 <h2 *ngIf="products">Products:</h2>
 
-<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-xl-4 gx-2 gy-4" *ngIf="products">
+<div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xxl-4 gx-2 gy-4" *ngIf="products">
   <div class="col" *ngFor="let product of products">
     <app-product [product]="product"></app-product>
   </div>

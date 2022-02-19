@@ -22,18 +22,17 @@ public class ProductsController : ControllerBase
     }
 
     // GET: api/Products
-    [HttpGet("{search?}")]
-    public async Task<ActionResult<IEnumerable<Product>>> GetProduct(string? search)
+    [HttpGet]
+    public async Task<ActionResult<IEnumerable<Product>>> GetProduct()
     {
-        if(string.IsNullOrEmpty(search))
-        {
-            return await _context.Products.ToListAsync();
-        }
-        else
-        {
-            //Get fuzzy finder instead
-            return await _context.Products.Where(x => x.Name.Contains(search)).ToListAsync();
-        }
+        return await _context.Products.ToListAsync();
+    }
+
+    // GET: api/Products/Search/search-term
+    [HttpGet("search/{search}")]
+    public async Task<ActionResult<IEnumerable<Product>>> GetSearchedProduct(string search)
+    {
+        return await _context.Products.Where(x => x.Name.Contains(search) || x.Barcode.Contains(search)).ToListAsync();
     }
 
     // GET: api/Products/5

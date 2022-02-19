@@ -31,7 +31,4 @@ export class ProductComponent implements OnInit {
   addToBasket() {
     this.cart.addTo(this.product, this.productCount);
   }
-
-
-
 }

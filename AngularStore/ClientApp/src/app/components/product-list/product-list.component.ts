@@ -1,6 +1,6 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { IProduct } from '../../lib/models/Product';
+import { ProductsService } from '../../services/products.service';
 
 @Component({
   selector: 'app-product-list',
@@ -11,15 +11,22 @@ export class ProductListComponent implements OnInit {
 
   products: IProduct[] = [];
 
-  constructor(private http: HttpClient, @Inject('BASE_URL') private baseUrl: string) { }
+  constructor(private productsService: ProductsService) { }
 
   ngOnInit(): void {
-    this.assignProductsFromAPI();
+    this.getAllProducts();
   }
 
-  private assignProductsFromAPI() {
-    this.http.get<IProduct[]>(this.baseUrl + 'api/products').subscribe(res => this.products = res, err => console.error(err));
-    console.log(this.baseUrl);
+  onProductSearched(searchTerm: string): void {
+    if (searchTerm.trim() === "") {
+      this.getAllProducts();
+    } else {
+      this.productsService.SearchProducts(searchTerm).subscribe((productSubset: IProduct[]) => { console.log(productSubset); this.products = productSubset; });
+    }
+  }
+
+  private getAllProducts(): void {
+    this.productsService.AllProducts().subscribe((allProducts: IProduct[]) => this.products = allProducts);
   }
 
 }

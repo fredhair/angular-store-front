@@ -9,7 +9,7 @@ public class Product
     [DatabaseGenerated(DatabaseGeneratedOption.None)]
     public int Id { get; set; }
     public string Name { get; set; }
-    [Column(TypeName = "money")]
+    //[Column(TypeName = "money")]
     public decimal Price { get; set; }
     public string Category {  get; set; }
     public string Barcode { get; set; }
