@@ -8,8 +8,6 @@ import { IProduct } from '../lib/models/Product';
 })
 export class ProductsService {
 
-  products$: Observable<IProduct[]> = new Observable();
-
   constructor(private http: HttpClient, @Inject('BASE_URL') private baseUrl: string) { }
 
   AllProducts() {

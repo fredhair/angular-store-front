@@ -14,12 +14,13 @@ export interface CartEntry {
 export class CartService {
 
   private items: CartEntry[] = [];
-  private items$: BehaviorSubject<CartEntry[]> = new BehaviorSubject(this.items);
+  private entries: BehaviorSubject<CartEntry[]> = new BehaviorSubject(this.items);
+  private productsTotal = new BehaviorSubject(0);
 
-  productsTotal$: BehaviorSubject<number> = new BehaviorSubject(0);
-  entries$: Observable<CartEntry[]> = this.items$.asObservable();
+  public readonly productsTotal$ = this.productsTotal.asObservable();
+  public readonly entries$: Observable<CartEntry[]> = this.entries.asObservable();
   //Dont think I actually needed this in the end but meh
-  productsOnly$: Observable<IProduct[]> = this.items$.pipe(map(arr => arr.map(entry => entry.product)));
+  productsOnly$: Observable<IProduct[]> = this.entries.pipe(map(arr => arr.map(entry => entry.product)));
 
   constructor() { }
 
@@ -34,8 +35,8 @@ export class CartService {
     } else {
       this.items.splice(foundIndex, 1, { product, count: this.items[foundIndex].count + count });
     }
-    this.items$.next(this.items);
-    this.productsTotal$.next(this.calculateTotalValue());
+    this.entries.next(this.items);
+    this.productsTotal.next(this.calculateTotalValue());
   }
 
   removeFrom(productID: number, count: number): void;
@@ -57,8 +58,8 @@ export class CartService {
         this.removeItemAt(foundIndex);
       }
     }
-    this.items$.next(this.items);
-    this.productsTotal$.next(this.calculateTotalValue());
+    this.entries.next(this.items);
+    this.productsTotal.next(this.calculateTotalValue());
   }
 
   setCount(product: IProduct, count: number) {
@@ -68,14 +69,14 @@ export class CartService {
     } else if(count > 0) {
       this.items.push({ product, count });
     }
-    this.items$.next(this.items);
-    this.productsTotal$.next(this.calculateTotalValue());
+    this.entries.next(this.items);
+    this.productsTotal.next(this.calculateTotalValue());
   }
 
   empty(): void {
     this.items = [];
-    this.items$.next(this.items);
-    this.productsTotal$.next(this.calculateTotalValue());
+    this.entries.next(this.items);
+    this.productsTotal.next(this.calculateTotalValue());
   }
 
   hasItem(productID: number): boolean;
